@@ -20,7 +20,11 @@ class LoginForm extends Component {
          {abortEarly: false});
     if(!result.error) return null;
 
-    const errors = {}
+    const errors = {};
+    for (let item of result.error.details)
+     errors[item.path[0]] = item.message;
+
+     return errors;
    };
 
    handleSubmit = e =>{
