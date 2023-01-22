@@ -8,6 +8,7 @@
 import MoviesForm from './componets/moviesForm';
 import LoginForm from './componets/loginForm';
 import './App.css';
+import RegisterForm from './componets/registerForm';
 
 
 
@@ -16,16 +17,17 @@ import './App.css';
     <React.Fragment>
     <NavBar />
     <main className='container'>
-      <Switch>
+    <Switch>
+      <Route path="/register" component={RegisterForm} />
       <Route path="/login" component ={LoginForm} />
       <Route path="/movie/:id" component={MoviesForm} />
       <Route path="/movies" component={Movies}></Route> 
-       <Route path="/customers" component={Customers}></Route>
-       <Route path="/rentals" component={Rentals}></Route>
-       <Route path="/not-found" component={NotFound}></Route>  
-       <Redirect from="/"  exact to="/movies" /> 
-       <Redirect to="/not-found" />
-      </Switch>
+      <Route path="/customers" component={Customers}></Route>
+      <Route path="/rentals" component={Rentals}></Route>
+      <Route path="/not-found" component={NotFound}></Route>  
+      <Redirect from="/"  exact to="/movies" /> 
+      <Redirect to="/not-found" />
+    </Switch>
     </main>
     </React.Fragment>
     
