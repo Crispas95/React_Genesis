@@ -6,7 +6,7 @@ import {getMovies} from '../services/fakeMovieService';
 import { getGenres } from '../services/fakeGenreService';
 import {paginate} from '../utils/paginate';
 import MoviesTable from './moviesTable';
-import _ from 'lodash';
+import _, { times } from 'lodash';
 import { Link } from 'react-router-dom';
 
 
@@ -16,6 +16,8 @@ class Movies extends Component {
         genre: [],
         currentPage:1,
         pageSize: 4,
+        searchQuery:"",
+        selectedGenre: null,
         sortColumn: { path: 'title', order: 'asc'}
      };
 
@@ -43,7 +45,11 @@ class Movies extends Component {
      }
 
      handleGenreSelect = genre =>{
-        this.setState({selectedGenre: genre, currentPage: 1});
+        this.setState({selectedGenre: genre,searchQuery:"", currentPage: 1});
+     }
+
+     handleSearch = query =>{
+      this.setState({searchQuery: query,selectedGenre: null,currentPage: 1});
      }
 
      handleSort = sortColumn => {
@@ -93,6 +99,7 @@ class Movies extends Component {
                    className='btn btn-primary'
                    style={{marginButtom: 20}}/>
                 <p>Showing {totalCount} movies in the database</p> 
+                <SearchBox value={searchQuery} onChange={this.handleSearch} />
              <MoviesTable 
                 movies={movies}
                 sortColumn={sortColumn} 

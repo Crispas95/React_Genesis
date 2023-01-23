@@ -58,6 +58,8 @@ renderButton(label){
  renderInput(name,label,type = 'text'){
     const { data, errors } = this.state;
 
+    
+
     return(
         <Input  
         value={data[name]}
