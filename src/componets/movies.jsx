@@ -8,7 +8,7 @@ import {paginate} from '../utils/paginate';
 import MoviesTable from './moviesTable';
 import _, { times } from 'lodash';
 import { Link } from 'react-router-dom';
-
+import SearchBox from './searchBox';
 
 class Movies extends Component {
     state = { 
@@ -63,6 +63,7 @@ class Movies extends Component {
          currentPage,
          sortColumn,
          selectedGenre,
+         searchQuery,
          movies: allMovies} = this.state;
 
          let filtered = allMovies;
@@ -72,7 +73,7 @@ class Movies extends Component {
             );
             else if(selectedGenre && selectedGenre._id)
             filtered = allMovies.filter(m=> m.genre._id === selectedGenre._id);
-            
+
          const sorted= _.orderBy(filtered,[sortColumn.path],[sortColumn.order]);
 
         const movies = paginate(sorted,currentPage,pageSize);
@@ -82,7 +83,7 @@ class Movies extends Component {
 
     render() { 
         const {length: count} = this.state.movies;
-        const {pageSize,currentPage,sortColumn} = this.state;
+        const {pageSize,currentPage,sortColumn,searchQuery} = this.state;
 
         if(count === 0) return <p>There are no movies in the database.</p>
 
@@ -104,7 +105,7 @@ class Movies extends Component {
                    style={{marginButtom: 20}}/>
                 <p>Showing {totalCount} movies in the database</p> 
                 <SearchBox value={searchQuery} onChange={this.handleSearch} />
-             <MoviesTable 
+                <MoviesTable 
                 movies={movies}
                 sortColumn={sortColumn} 
                 onLike={this.handleLike} 
