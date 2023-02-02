@@ -1,5 +1,5 @@
- import React, {Component} from 'react';
- import { Route, Redirect,Switch } from 'react-router-dom';
+import React from 'react';
+import { Route, Redirect,Switch } from 'react-router-dom';
  import {ToastContainer} from 'react-toastify'
  import Movies from './componets/movies';
  import Rentals from './componets/common/rentals';
@@ -8,7 +8,8 @@
  import NavBar from './componets/navbar';
 import MoviesForm from './componets/moviesForm';
 import LoginForm from './componets/loginForm';
-import 'react-toastify/dist/react-toastify.css'
+
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import RegisterForm from './componets/registerForm';
 
